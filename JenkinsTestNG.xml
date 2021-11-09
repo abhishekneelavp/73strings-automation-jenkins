@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE suite SYSTEM "testng-1.0.dtd"> -->
+<suite name="73Strings automation">
+
+	<parameter name="isBaseImage" value="false" />
+	<parameter name="expected" value="0.15" />
+	<parameter name="deviceName" value="Abhishek's Lenovo" />
+	<parameter name="browser" value="chrome" />
+	<parameter name="siteURL"
+		value="https://aiplatform-uat.73strings.com/platform/app-management/#/auth" />
+	<parameter name="userName"
+		value="neela.abhishek@73strings.com" />
+	<parameter name="password" value="nJzBOCYS" />
+	
+	<test name="73Strings Automation">
+		<classes>
+			<class name="com.strings73.test.JenkinsAutomationTest"/>
+		</classes>
+	</test>
+</suite>
