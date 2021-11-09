@@ -154,7 +154,7 @@ public class GeneralDetailsPage extends BaseStrings73AutomationPage {
 		
 		waitForElementVisibilty(nextButton);
 
-		this.nextButton.click();
+		clickOnElement(nextButton);
 
 		logger.info("Ending of clickOnNext method");
 	}

@@ -31,7 +31,7 @@ public class ValuationSummaryPage extends BaseStrings73AutomationPage{
 	@FindBy(xpath = "//div[contains(text(),'Calibration Approach')]/parent::div//following-sibling::div/mat-form-field/div/div/div/input")
 	private WebElement calibrationApproachInputField;
 	
-	@FindBy(xpath = "//*[contains(text(),' Investment Summary ')]")
+	@FindBy(xpath = "//span[contains(text(),' Investment Summary ')]")
 	private WebElement investmentSummary;
 	
 	@FindBy(xpath="//span[contains(text(),' Portfolio Summary ')]")

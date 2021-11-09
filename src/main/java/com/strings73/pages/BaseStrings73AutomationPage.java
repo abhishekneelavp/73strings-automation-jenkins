@@ -171,7 +171,7 @@ public class BaseStrings73AutomationPage {
 	
 	public void waitForElementVisibilty(WebElement element) {
 		
-		WebDriverWait wait = new WebDriverWait(this.driver, 1800);
+		WebDriverWait wait = new WebDriverWait(this.driver, 300);
 		wait.until(ExpectedConditions.visibilityOf(element));
 		wait.until(ExpectedConditions.elementToBeClickable(element));
 		

@@ -141,7 +141,7 @@ public class JenkinsAutomationTest extends BaseStrings73AutomationTest {
 	public void addCompany(String deviceName) throws Exception {
 		logger.info("Starting of addCompany method");
         
-		Thread.sleep(120000);
+		//Thread.sleep(120000);
 
 		portfolioSummaryPage.clickOnAddCompanyButton();
 

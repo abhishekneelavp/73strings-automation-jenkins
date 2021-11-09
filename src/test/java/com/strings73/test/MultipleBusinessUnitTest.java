@@ -24,37 +24,34 @@ import com.strings73.pages.ValuationMethodsPage;
 import com.strings73.pages.ValuationSummaryPage;
 import com.strings73.util.MyScreenRecorder;
 
-
 public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 	private WebDriver driver = null;
-    
+
 	private FundsPage fundsPage = null;
 
 	private PortfolioSummaryPage portfolioSummaryPage = null;
-	
+
 	private MultipleBusinessUnitPage multipleBusinessUnitPage = null;
-	
+
 	private InvestmentSummaryPage investmentsummaryPage = null;
-	
-	private ValuationSummaryPage valuationSummaryPage=null;
+
+	private ValuationSummaryPage valuationSummaryPage = null;
 
 	private GeneralDetailsPage generalDetailsPage = null;
 
 	private HistoricalFinancialsPage historicalFinancialsPage = null;
 
 	private ProjectedFinancialsPage projectedFinancialsPage = null;
-	
+
 	private ValuationMethodsPage valuationMethodsPage = null;
-	
+
 	private BidDetailsPage bidDetailsPage = null;
-	
+
 	private SecondariesPage secondariesPage = null;
 
 	private OthersPage othersPage = null;
 
 	private LogoutPage logoutPage = null;
-	 
-
 
 	private static final Logger logger = Logger.getLogger(AddCompanyTest.class.getName());
 
@@ -70,11 +67,11 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		this.fundsPage = new FundsPage(driver);
 
 		this.portfolioSummaryPage = new PortfolioSummaryPage(driver);
-		
-		this.valuationMethodsPage=new ValuationMethodsPage(driver);
-		
-        this.multipleBusinessUnitPage = new MultipleBusinessUnitPage(driver);
-        
+
+		this.valuationMethodsPage = new ValuationMethodsPage(driver);
+
+		this.multipleBusinessUnitPage = new MultipleBusinessUnitPage(driver);
+
 		this.investmentsummaryPage = new InvestmentSummaryPage(driver);
 
 		this.generalDetailsPage = new GeneralDetailsPage(driver);
@@ -82,25 +79,25 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		this.historicalFinancialsPage = new HistoricalFinancialsPage(driver);
 
 		this.projectedFinancialsPage = new ProjectedFinancialsPage(driver);
-		
+
 		this.valuationMethodsPage = new ValuationMethodsPage(driver);
-		
+
+		this.valuationSummaryPage = new ValuationSummaryPage(driver);
+
 		this.bidDetailsPage = new BidDetailsPage(driver);
-		
+
 		this.secondariesPage = new SecondariesPage(driver);
 
 		this.othersPage = new OthersPage(driver);
-		
+
 		this.logoutPage = new LogoutPage(driver);
-		
-		
-		
+
 		this.siteLogin(userName, password, driver);
 
 		logger.info("Ending of initStrings73Login method in AddCompanyTest");
 	}
 
-		@Test(priority = 1, description = "Login Test")
+	@Test(priority = 1, description = "Login Test")
 	public void loginTest() {
 		logger.info("Starting of loginTest method");
 
@@ -115,7 +112,7 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		logger.info("Starting of fundName method");
 
 		String actualTitle = this.loginPage.getJenkinsText();
-		Assert.assertEquals(actualTitle, expectedAssertionsProp.getProperty("val.pitch"));
+		Assert.assertEquals(actualTitle, expectedAssertionsProp.getProperty("jenkins"));
 
 		logger.info("Ending of fundName method");
 	}
@@ -123,7 +120,7 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 	@Test(priority = 3, description = "Navigating To Portfolio Summary Test")
 	public void navigatingToPortfolioSummary() throws Exception {
 		logger.info("Starting of navigatingToPortfolioSummary method");
-		
+
 		fundsPage.impicitWait();
 
 		fundsPage.clickOnFund(testDataProp.getProperty("addcompany.fund.name"));
@@ -132,10 +129,9 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 	}
 
 	@Test(priority = 4, description = "Add Company Test")
-	@Parameters({ "deviceName" })
-	public void addCompany(String deviceName) throws Exception {
+	public void addCompany() throws Exception {
 		logger.info("Starting of addCompany method");
-        
+
 		Thread.sleep(120000);
 
 		portfolioSummaryPage.clickOnAddCompanyButton();
@@ -147,16 +143,14 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 
 		Thread.sleep(3000);
 		multipleBusinessUnitPage.Enterunits(testDataProp.getProperty("units"));
-		
+
 		portfolioSummaryPage.clickOnSave();
 
 		portfolioSummaryPage.clickOnOk();
 
-		MyScreenRecorder.stopRecording();
-
 		logger.info("Ending of addCompany method");
 	}
-	
+
 	@Test(priority = 5, description = "Navigating To Invest Summary Page Test")
 	public void navigatingToInvestSummaryPage() throws Exception {
 		logger.info("Starting of navigatingToInvestSummaryPage method");
@@ -179,11 +173,10 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		logger.info("Ending of navigatingToShowValuationDates method");
 	}
 
-	
 	@Test(priority = 7, description = "Navigating To General Details Test")
 	public void navigatingToGeneralDetails() throws Exception {
 		logger.info("Starting of navigatingToGeneralDetails method");
-		
+
 		Thread.sleep(5000);
 
 		investmentsummaryPage.clickOnEdit();
@@ -203,17 +196,17 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		generalDetailsPage.setWebsite(testDataProp.getProperty("addcompany.website"));
 
 		generalDetailsPage.setCountry(testDataProp.getProperty("addcompany.country"));
-		
+
 		Thread.sleep(3000);
 
 		generalDetailsPage.setIndustry(testDataProp.getProperty("addcompany.industry"));
-		
+
 		Thread.sleep(3000);
-		
+
 		generalDetailsPage.selectCurrency(testDataProp.getProperty("addcompany.currency"));
-		
+
 		Thread.sleep(3000);
-		
+
 		generalDetailsPage.clickOnNext();
 
 		logger.info("Ending of fillingGeneralDetails method");
@@ -249,6 +242,7 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		secondariesPage.clickOnPreview();
 		logger.info("Ending of fillingDetailsInProjectedFinancials method");
 	}
+
 	@Test(priority = 11, description = "Submitting Application Test")
 	public void submitApplication() throws Exception {
 		logger.info("Starting of submitApplication method");
@@ -263,7 +257,7 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		logger.info("Starting of navigatingToValuationSummary method");
 
 		othersPage.clickOnOk();
-		
+
 		logger.info("Ending of navigatingToValuationSummary method");
 	}
 
@@ -276,7 +270,7 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		investmentsummaryPage.clickOnShowValuationDates();
 		Thread.sleep(140000);
 		investmentsummaryPage.clickOnEdit();
-		
+
 		multipleBusinessUnitPage.clickOnEditButton1();
 		Thread.sleep(40000);
 		logger.info("Ending of navigatingToShowValuation method");
@@ -295,21 +289,20 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		generalDetailsPage.setWebsite(testDataProp.getProperty("addcompany.website"));
 
 		generalDetailsPage.setCountry(testDataProp.getProperty("addcompany.country"));
-		
+
 		Thread.sleep(3000);
 
 		generalDetailsPage.setIndustry(testDataProp.getProperty("addcompany.industry"));
-		
+
 		Thread.sleep(3000);
-		
+
 		generalDetailsPage.selectCurrency(testDataProp.getProperty("addcompany.currency"));
-		
+
 		Thread.sleep(3000);
-		
+
 		historicalFinancialsPage.clickOnNext();
 		logger.info("Ending of fillingGeneralDetails method");
 	}
-
 
 	@Test(priority = 15, description = "Filling Details In Historical Financials Test")
 	public void fillingDetailsInhistoricalFinancials1() throws Exception {
@@ -410,13 +403,13 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		logger.info("Starting of navigatingToValuationSummary method");
 
 		othersPage.clickOnOk();
-		
-	       Thread.sleep(120000);
-	       
-			valuationSummaryPage.clickOnInvestmentSummary();
+
+		Thread.sleep(120000);
+
+		valuationSummaryPage.clickOnInvestmentSummary();
 		logger.info("Ending of navigatingToValuationSummary method");
 	}
-		
+
 	@Test(priority = 24, description = "Navigating To Show Valuation Test")
 	public void navigatingToShowValuation2() throws Exception {
 		logger.info("Starting of navigatingToShowValuation method");
@@ -428,303 +421,350 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 
 		logger.info("Ending of navigatingToShowValuation method");
 	}
-		@Test(priority = 25, description = "Navigating To General Details Test")
-		public void navigatingToGeneralDetails2() throws Exception {
-			logger.info("Starting of navigatingToGeneralDetails method");
 
-			investmentsummaryPage.clickOnEdit();
-            multipleBusinessUnitPage.clickOnEditButton2();
-            Thread.sleep(5000);
-			logger.info("Ending of navigatingToGeneralDetails method");
-		}
+	@Test(priority = 25, description = "Navigating To General Details Test")
+	public void navigatingToGeneralDetails2() throws Exception {
+		logger.info("Starting of navigatingToGeneralDetails method");
 
-		@Test(priority = 26, description = "Filling General Details Test")
-		public void fillingGeneralDetails2() throws Exception {
-			logger.info("Starting of fillingGeneralDetails method");
+		investmentsummaryPage.clickOnEdit();
+		multipleBusinessUnitPage.clickOnEditButton2();
+		Thread.sleep(5000);
+		logger.info("Ending of navigatingToGeneralDetails method");
+	}
 
-			generalDetailsPage.setNameOfCompany(testDataProp.getProperty("addcompany.company.name"));
+	@Test(priority = 26, description = "Filling General Details Test")
+	public void fillingGeneralDetails2() throws Exception {
+		logger.info("Starting of fillingGeneralDetails method");
 
-			generalDetailsPage.enterBusinessDescription(testDataProp.getProperty("addcompany.description"));
+		generalDetailsPage.setNameOfCompany(testDataProp.getProperty("addcompany.company.name"));
 
-			generalDetailsPage.setHQCountry(testDataProp.getProperty("addcompany.hq.country"));
+		generalDetailsPage.enterBusinessDescription(testDataProp.getProperty("addcompany.description"));
 
-			generalDetailsPage.setWebsite(testDataProp.getProperty("addcompany.website"));
+		generalDetailsPage.setHQCountry(testDataProp.getProperty("addcompany.hq.country"));
 
-			generalDetailsPage.setCountry(testDataProp.getProperty("addcompany.country"));
-			
-			Thread.sleep(3000);
+		generalDetailsPage.setWebsite(testDataProp.getProperty("addcompany.website"));
 
-			generalDetailsPage.setIndustry(testDataProp.getProperty("addcompany.industry"));
-			
-			Thread.sleep(3000);
-			
-			generalDetailsPage.selectCurrency(testDataProp.getProperty("addcompany.currency"));
-			
-			Thread.sleep(3000);
-			
-			generalDetailsPage.clickOnNext();
+		generalDetailsPage.setCountry(testDataProp.getProperty("addcompany.country"));
 
-			logger.info("Ending of fillingGeneralDetails method");
-		}
+		Thread.sleep(3000);
 
+		generalDetailsPage.setIndustry(testDataProp.getProperty("addcompany.industry"));
 
+		Thread.sleep(3000);
 
-		@Test(priority = 27, description = "Filling Details In Historical Financials Test")
-		public void fillingDetailsInhistoricalFinancials2() throws Exception {
-			logger.info("Starting of fillingDetailsInhistoricalFinancials method");
+		generalDetailsPage.selectCurrency(testDataProp.getProperty("addcompany.currency"));
 
-			historicalFinancialsPage.selectYearEndMonth();
+		Thread.sleep(3000);
 
-			historicalFinancialsPage.selectTypeOfFinancials();
+		generalDetailsPage.clickOnNext();
 
-			historicalFinancialsPage.clickOnBrowse(testDataProp.getProperty("historical.excel.file.historical"));
+		logger.info("Ending of fillingGeneralDetails method");
+	}
 
-			historicalFinancialsPage.clickOnNext();
+	@Test(priority = 27, description = "Filling Details In Historical Financials Test")
+	public void fillingDetailsInhistoricalFinancials2() throws Exception {
+		logger.info("Starting of fillingDetailsInhistoricalFinancials method");
 
-			logger.info("Ending of fillingDetailsInhistoricalFinancials method");
-		}
+		historicalFinancialsPage.selectYearEndMonth();
 
-		@Test(priority = 28, description = "Filling Details In Projected Financials Test")
-		public void fillingDetailsInProjectedFinancials2() throws Exception {
-			logger.info("Starting of fillingDetailsInProjectedFinancials method");
+		historicalFinancialsPage.selectTypeOfFinancials();
 
-			projectedFinancialsPage.setDebtToEquity(testDataProp.getProperty("projected.debttoequity"));
+		historicalFinancialsPage.clickOnBrowse(testDataProp.getProperty("historical.excel.file.historical"));
 
-			projectedFinancialsPage.selectYearEndMonth();
+		historicalFinancialsPage.clickOnNext();
 
-			projectedFinancialsPage.selectTypeOfFinancials();
+		logger.info("Ending of fillingDetailsInhistoricalFinancials method");
+	}
 
-			projectedFinancialsPage.clickOnBrowse(testDataProp.getProperty("projected.excel.file.projected"));
+	@Test(priority = 28, description = "Filling Details In Projected Financials Test")
+	public void fillingDetailsInProjectedFinancials2() throws Exception {
+		logger.info("Starting of fillingDetailsInProjectedFinancials method");
 
-			projectedFinancialsPage.clickOnNext();
+		projectedFinancialsPage.setDebtToEquity(testDataProp.getProperty("projected.debttoequity"));
 
-			logger.info("Ending of fillingDetailsInProjectedFinancials method");
-		}
+		projectedFinancialsPage.selectYearEndMonth();
 
-		@Test(priority = 29, description = "Choosing Surplus Assets")
-		public void choosingSurplusAssets2() throws Exception {
-			logger.info("Starting of choosingSurplusAssets method");
+		projectedFinancialsPage.selectTypeOfFinancials();
 
-			othersPage.selectAnySurplus();
+		projectedFinancialsPage.clickOnBrowse(testDataProp.getProperty("projected.excel.file.projected"));
 
-			othersPage.clickOnNext();
+		projectedFinancialsPage.clickOnNext();
 
-			logger.info("Ending of choosingSurplusAssets method");
-		}
+		logger.info("Ending of fillingDetailsInProjectedFinancials method");
+	}
 
-		@Test(priority = 30, description = "Selecting Valuation Methods Test")
-		public void selectingValuationMethods2() throws Exception {
-			logger.info("Starting of selectingValuationMethods method");
+	@Test(priority = 29, description = "Choosing Surplus Assets")
+	public void choosingSurplusAssets2() throws Exception {
+		logger.info("Starting of choosingSurplusAssets method");
 
-			valuationMethodsPage.selectComparableTransactionApproach();
+		othersPage.selectAnySurplus();
 
-			valuationMethodsPage.selectComparableCompanyApproach();
+		othersPage.clickOnNext();
 
-			valuationMethodsPage.selectIncomeApproach();
+		logger.info("Ending of choosingSurplusAssets method");
+	}
 
-			logger.info("Ending of selectingValuationMethods method");
-		}
+	@Test(priority = 30, description = "Selecting Valuation Methods Test")
+	public void selectingValuationMethods2() throws Exception {
+		logger.info("Starting of selectingValuationMethods method");
 
-		@Test(priority = 31, description = "Last Funding Details Test")
-		public void lastFundingDetails2() throws Exception {
-			logger.info("Starting of lastFundingDetails method");
+		valuationMethodsPage.selectComparableTransactionApproach();
 
-			valuationMethodsPage.scrollDown(1000);
+		valuationMethodsPage.selectComparableCompanyApproach();
 
-			valuationMethodsPage.clickOnNext();
+		valuationMethodsPage.selectIncomeApproach();
 
-			logger.info("Ending of lastFundingDetails method");
-		}
+		logger.info("Ending of selectingValuationMethods method");
+	}
 
-		@Test(priority = 32, description = "Bid Details Test")
-		public void bidDetails2() throws Exception {
-			logger.info("Starting of bidDetails method");
+	@Test(priority = 31, description = "Last Funding Details Test")
+	public void lastFundingDetails2() throws Exception {
+		logger.info("Starting of lastFundingDetails method");
 
-			bidDetailsPage.clickOnNext();
+		valuationMethodsPage.scrollDown(1000);
 
-			logger.info("Ending of bidDetails method");
-		}
+		valuationMethodsPage.clickOnNext();
 
-		@Test(priority = 33, description = "Secondaries Test")
-		public void secondaries2() throws Exception {
-			logger.info("Starting of secondaries method");
+		logger.info("Ending of lastFundingDetails method");
+	}
 
-			secondariesPage.clickOnPreview();
+	@Test(priority = 32, description = "Bid Details Test")
+	public void bidDetails2() throws Exception {
+		logger.info("Starting of bidDetails method");
 
-			logger.info("Ending of secondaries method");
-		}
+		bidDetailsPage.clickOnNext();
 
-		@Test(priority = 34, description = "Submitting Application Test")
-		public void submitApplication2() throws Exception {
-			logger.info("Starting of submitApplication method");
+		logger.info("Ending of bidDetails method");
+	}
 
-			othersPage.clickOnSubmit();
+	@Test(priority = 33, description = "Secondaries Test")
+	public void secondaries2() throws Exception {
+		logger.info("Starting of secondaries method");
 
-			logger.info("Ending of submitApplication method");
-		}
+		secondariesPage.clickOnPreview();
 
-		@Test(priority = 35, description = "Navigating To Valuation")
-		public void navigatingToValuationSummary() throws Exception {
-			logger.info("Starting of navigatingToValuationSummary method");
+		logger.info("Ending of secondaries method");
+	}
 
-			othersPage.clickOnOk();
-			
-	       Thread.sleep(120000);
-	       
-			valuationSummaryPage.clickOnInvestmentSummary();
+	@Test(priority = 34, description = "Submitting Application Test")
+	public void submitApplication2() throws Exception {
+		logger.info("Starting of submitApplication method");
 
-			logger.info("Ending of navigatingToValuationSummary method");
-		}
-		@Test(priority = 36, description = "Navigating To Show Valuation Test")
-		public void navigatingToShowValuation1() throws Exception {
-			logger.info("Starting of navigatingToShowValuation method");
+		othersPage.clickOnSubmit();
 
-			investmentsummaryPage.clickOnMenu();
+		logger.info("Ending of submitApplication method");
+	}
 
-			investmentsummaryPage.clickOnShowValuationDates();
-			Thread.sleep(140000);
+	@Test(priority = 35, description = "Navigating To Valuation")
+	public void navigatingToValuationSummary() throws Exception {
+		logger.info("Starting of navigatingToValuationSummary method");
 
-			logger.info("Ending of navigatingToShowValuation method");
-		}
+		othersPage.clickOnOk();
 
-		@Test(priority = 37, description = "Starting of Roll Over Process Test")
-		public void rollOver() throws Exception {
-			logger.info("Starting of rollOver method");
+		Thread.sleep(120000);
 
-			investmentsummaryPage.setRollOverDate(testDataProp.getProperty("rollover.future.valuation.year"),
-					testDataProp.getProperty("rollover.future.valuation.month"),
-					testDataProp.getProperty("rollover.future.valuation.date"));
-	        Thread.sleep(3000); 
-			
-			investmentsummaryPage.clickOnAdd();
+		valuationSummaryPage.clickOnInvestmentSummary();
 
-			logger.info("Ending of rollOver method");
-		}
-		@Test(priority = 38, description = "Pop Up Window Test")
-		public void popUpWindow() throws Exception {
-			logger.info("Starting of popUpWindow method");
+		logger.info("Ending of navigatingToValuationSummary method");
+	}
 
-			investmentsummaryPage.clickOnOk();
+	@Test(priority = 36, description = "Navigating To Show Valuation Test")
+	public void navigatingToShowValuation1() throws Exception {
+		logger.info("Starting of navigatingToShowValuation method");
 
-			logger.info("Ending of popUpWindow method");
-		}
-		@Test(priority = 39, description = "Navigating to Application Preview Tab Test")
-		public void navigatingToApplicationPreviewTab() throws Exception {
-			logger.info("Starting of navigatingToApplicationPreviewTab method");
-			
-			investmentsummaryPage.clickOnEdit();
-			
-			Thread.sleep(5000);
-			
-			logger.info("Ending of navigatingToApplicationPreviewTab method");
-		}
+		investmentsummaryPage.clickOnMenu();
 
-		@Test(priority = 40, description = "Submitting Application")
-		public void rollOversubmitApplication() throws Exception {
-			logger.info("Starting of submitApplication method");
+		investmentsummaryPage.clickOnShowValuationDates();
+		Thread.sleep(140000);
 
-			othersPage.scrollDown(1000);
+		logger.info("Ending of navigatingToShowValuation method");
+	}
 
-			othersPage.clickOnSubmit();
+	@Test(priority = 37, description = "Starting of Roll Over Process Test")
+	public void rollOver() throws Exception {
+		logger.info("Starting of rollOver method");
 
-			logger.info("Ending of submitApplication method");
+		investmentsummaryPage.setRollOverDate(testDataProp.getProperty("rollover.future.valuation.year"),
+				testDataProp.getProperty("rollover.future.valuation.month"),
+				testDataProp.getProperty("rollover.future.valuation.date"));
+		Thread.sleep(3000);
 
-		}
+		investmentsummaryPage.clickOnAdd();
 
-		@Test(priority = 41, description = "Navigating To Valuation")
-		public void rollOverNavigatingToValuationSummary() throws Exception {
-			logger.info("Starting of navigatingToValuationSummary method");
-	       
-			othersPage.clickOnOk();
+		logger.info("Ending of rollOver method");
+	}
 
-			Thread.sleep(50000);
+	@Test(priority = 38, description = "Pop Up Window Test")
+	public void popUpWindow() throws Exception {
+		logger.info("Starting of popUpWindow method");
 
-			logger.info("Ending of navigatingToValuationSummary method");
-		}
-		@Test(priority = 42, description = "Navigating to Application Preview Tab Test")
-		public void navigatingToApplicationPreviewTab1() throws Exception {
-			logger.info("Starting of navigatingToApplicationPreviewTab method");
-			
-			investmentsummaryPage.clickOnEdit();
-			
-			Thread.sleep(5000);
-			multipleBusinessUnitPage.clickOnEditButton1();
-			Thread.sleep(5000);
-			logger.info("Ending of navigatingToApplicationPreviewTab method");
-		}
+		investmentsummaryPage.clickOnOk();
 
-		@Test(priority = 43, description = "Submitting Application")
-		public void rollOversubmitApplication1() throws Exception {
-			logger.info("Starting of submitApplication method");
+		logger.info("Ending of popUpWindow method");
+	}
 
-			othersPage.scrollDown(1000);
+	@Test(priority = 39, description = "Navigating to Application Preview Tab Test")
+	public void navigatingToApplicationPreviewTab() throws Exception {
+		logger.info("Starting of navigatingToApplicationPreviewTab method");
 
-			othersPage.clickOnSubmit();
+		investmentsummaryPage.clickOnEdit();
 
-			logger.info("Ending of submitApplication method");
+		Thread.sleep(5000);
 
-		}
+		logger.info("Ending of navigatingToApplicationPreviewTab method");
+	}
 
-		@Test(priority = 44, description = "Navigating To Valuation")
-		public void rollOverNavigatingToValuationSummary1() throws Exception {
-			logger.info("Starting of navigatingToValuationSummary method");
-	       
-			othersPage.clickOnOk();
+	@Test(priority = 40, description = "Submitting Application")
+	public void rollOversubmitApplication() throws Exception {
+		logger.info("Starting of submitApplication method");
 
-			Thread.sleep(50000);
-           
-			logger.info("Ending of navigatingToValuationSummary method");
-		}
+		othersPage.scrollDown(1000);
 
+		othersPage.clickOnSubmit();
 
-		@Test(priority = 45, description = "Navigating to Application Preview Tab Test")
-		public void navigatingToApplicationPreviewTab2() throws Exception {
-			logger.info("Starting of navigatingToApplicationPreviewTab method");
-			
-			investmentsummaryPage.clickOnEdit();
-			
-			Thread.sleep(5000);
-			multipleBusinessUnitPage.clickOnEditButton1();
-			Thread.sleep(5000);
-			logger.info("Ending of navigatingToApplicationPreviewTab method");
-		}
+		logger.info("Ending of submitApplication method");
 
-		@Test(priority = 46, description = "Submitting Application")
-		public void rollOversubmitApplication2() throws Exception {
-			logger.info("Starting of submitApplication method");
+	}
 
-			othersPage.scrollDown(1000);
+	@Test(priority = 41, description = "Navigating To Valuation")
+	public void rollOverNavigatingToValuationSummary() throws Exception {
+		logger.info("Starting of navigatingToValuationSummary method");
 
-			othersPage.clickOnSubmit();
+		othersPage.clickOnOk();
 
-			logger.info("Ending of submitApplication method");
+		Thread.sleep(50000);
+		investmentsummaryPage.clickOnMenu();
 
-		}
+		investmentsummaryPage.clickOnShowValuationDates();
+		Thread.sleep(140000);
 
-		@Test(priority = 47, description = "Navigating To Valuation")
-		public void rollOverNavigatingToValuationSummary2() throws Exception {
-			logger.info("Starting of navigatingToValuationSummary method");
-	       
-			othersPage.clickOnOk();
+		logger.info("Ending of navigatingToValuationSummary method");
+	}
 
-			Thread.sleep(50000);
-            
-			logger.info("Ending of navigatingToValuationSummary method");
-		}
+	@Test(priority = 42, description = "Navigating to Application Preview Tab Test")
+	public void navigatingToApplicationPreviewTab1() throws Exception {
+		logger.info("Starting of navigatingToApplicationPreviewTab method");
 
-		@Test(priority = 48, description = "Logout Test")
-		public void logoutTest() throws Exception {
-			logger.info("Starting of logoutTest method");
+		investmentsummaryPage.clickOnEdit();
 
-			logoutPage.clickOnLogoutIcon();
+		Thread.sleep(5000);
+		multipleBusinessUnitPage.clickOnEditButton1();
+		Thread.sleep(5000);
+		logger.info("Ending of navigatingToApplicationPreviewTab method");
+	}
 
-			String actualText = logoutPage.getLoginText();
-			Assert.assertEquals(actualText, expectedAssertionsProp.getProperty("login"));
+	@Test(priority = 43, description = "Submitting Application")
+	public void rollOversubmitApplication1() throws Exception {
+		logger.info("Starting of submitApplication method");
 
-			logger.info("Ending of logoutTest method");
-		}
+		othersPage.scrollDown(1000);
 
-		@AfterClass
+		othersPage.clickOnSubmit();
+
+		logger.info("Ending of submitApplication method");
+
+	}
+
+	@Test(priority = 44, description = "Navigating To Valuation")
+	public void rollOverNavigatingToValuationSummary1() throws Exception {
+		logger.info("Starting of navigatingToValuationSummary method");
+
+		othersPage.clickOnOk();
+
+		Thread.sleep(50000);
+		valuationSummaryPage.clickOnInvestmentSummary();
+
+		investmentsummaryPage.clickOnMenu();
+
+		investmentsummaryPage.clickOnShowValuationDates();
+		Thread.sleep(140000);
+
+		logger.info("Ending of navigatingToValuationSummary method");
+	}
+
+	@Test(priority = 45, description = "Navigating to Application Preview Tab Test")
+	public void navigatingToApplicationPreviewTab2() throws Exception {
+		logger.info("Starting of navigatingToApplicationPreviewTab method");
+
+		investmentsummaryPage.clickOnEdit();
+
+		Thread.sleep(5000);
+		multipleBusinessUnitPage.clickOnEditButton2();
+		Thread.sleep(5000);
+		logger.info("Ending of navigatingToApplicationPreviewTab method");
+	}
+
+	@Test(priority = 46, description = "Submitting Application")
+	public void rollOversubmitApplication2() throws Exception {
+		logger.info("Starting of submitApplication method");
+
+		othersPage.scrollDown(1000);
+
+		othersPage.clickOnSubmit();
+
+		logger.info("Ending of submitApplication method");
+
+	}
+
+	@Test(priority = 47, description = "Navigating To Valuation")
+	public void rollOverNavigatingToValuationSummary2() throws Exception {
+		logger.info("Starting of navigatingToValuationSummary method");
+
+		othersPage.clickOnOk();
+
+		logger.info("Ending of navigatingToValuationSummary method");
+	}
+
+	@Test(priority = 48, description = "Navigating To Portfolio Summary Page Test")
+	public void portfolioSummary() throws Exception {
+		logger.info("Starting of portfolioSummary method");
+
+		valuationSummaryPage.clickOnPortfolioSummary();
+
+		//othersPage.clickOnOk();
+		
+		logger.info("Ending of portfolioSummary method");
+
+	}
+
+	@Test(priority = 49, description = "Delete Company Test")
+	public void deleteCompany() throws Exception {
+		logger.info("Starting of deleteCompany method");
+
+		MyScreenRecorder.startRecording("deleteCompany");
+
+		portfolioSummaryPage.clickOnDeleteIcon();
+
+		portfolioSummaryPage.clickOnCheckbox(testDataProp.getProperty("delete.company.name"));
+
+		portfolioSummaryPage.clickOnDelete();
+
+		portfolioSummaryPage.clickOnYes();
+
+		String actualText = portfolioSummaryPage.getDeletedSuccessfullyText();
+		Assert.assertEquals(actualText, expectedAssertionsProp.getProperty("deleted.successfully"));
+
+		portfolioSummaryPage.clickOnDeleteOk();
+
+		MyScreenRecorder.stopRecording();
+
+		logger.info("Ending of deleteCompany method");
+
+	}
+
+	@Test(priority = 50, description = "Logout Test")
+	public void logoutTest() throws Exception {
+		logger.info("Starting of logoutTest method");
+
+		logoutPage.clickOnLogoutIcon();
+
+		String actualText = logoutPage.getLoginText();
+		Assert.assertEquals(actualText, expectedAssertionsProp.getProperty("login"));
+
+		logger.info("Ending of logoutTest method");
+	}
+
+	@AfterClass
 	public void quitDriver() {
 
 		try {
@@ -743,5 +783,3 @@ public class MultipleBusinessUnitTest extends BaseStrings73AutomationTest {
 		}
 	}
 }
-
-
